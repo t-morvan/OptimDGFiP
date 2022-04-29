@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "dgfip"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+routingpy = "^0.4.0"
+geopandas = "^0.10.2"
+matplotlib = "^3.5.1"
+Shapely = "^1.8.1"
+Rtree = "^1.0.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+ipykernel = "^6.13.0"
+notebook = "^6.4.11"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
