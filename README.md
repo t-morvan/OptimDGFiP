@@ -6,15 +6,17 @@
 3. faire ``` poetry install ```
 
 4. optionnel (pour utiliser le backend vectorisé pygeos avec geopandas) : 
-```poetry export --without-hashes --format requirements.txt --output requirements.txt
-sed -i -e 's/^-e //g' requirements.txt
-python -m pip install \
-    --force-reinstall \
-    --no-binary pygeos,shapely,rasterio,pyproj \
-    -r requirements.txt
- ```  
-(cf https://github.com/python-poetry/poetry/issues/365)
+    ```poetry export --without-hashes --format requirements.txt --output requirements.txt
+    sed -i -e 's/^-e //g' requirements.txt
+    python -m pip install \
+        --force-reinstall \
+        --no-binary pygeos,shapely,rasterio,pyproj \
+        -r requirements.txt
+     ```  
+    (cf https://github.com/python-poetry/poetry/issues/365)
 
+
+5. Créer un sous-dossier data et télécharger+unzip toutes les sources ci-dessous (TO DO à automatiser)
 ## Données
 
 ### Données socio-économiques
