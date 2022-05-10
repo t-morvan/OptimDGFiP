@@ -1,5 +1,19 @@
 # OptimisationFiscale
 
+## Installation (in progress)
+1. cloner le repo ``` git clone https://github.com/t-morvan/OptimisationFiscale.git ```
+2. installer poetry https://python-poetry.org/docs/
+3. faire ``` poetry install ```
+
+4. optionnel (pour utiliser le backend vectorisé pygeos avec geopandas) : 
+```poetry export --without-hashes --format requirements.txt --output requirements.txt
+sed -i -e 's/^-e //g' requirements.txt
+python -m pip install \
+    --force-reinstall \
+    --no-binary pygeos,shapely,rasterio,pyproj \
+    -r requirements.txt
+ ```  
+(cf https://github.com/python-poetry/poetry/issues/365)
 
 ## Données
 
