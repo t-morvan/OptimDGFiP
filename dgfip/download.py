@@ -9,19 +9,18 @@ def download_url(url: str) -> None:
         root (str): Directory to place downloaded file in
         filename (str, optional): Name to save the file under. If None, use the basename of the URL
     """
-
-    root = f'{os.getcwd()}/data'
-    os.makedirs(root, exist_ok=True)
-
-     print("Downloading " + url + " to " + fpath)
+     print(f'Downloading {url}')
      response = urlopen(url)
      filename = response.info().get_filename()  
-     fpath = os.path.join(root, filename)
                        
-     urlretrieve(url, fpath)
+     urlretrieve(url, f'data/{filename}')
    
 def main() -> None:
-    # downlload all files
+    
+    if not os.path.isdir('data):
+        os.mkdir('data)
+ 
+    # download all files
      with open('datalinks.txt', 'r', encoding='utf-8') as file:
         for line in file:
             link = file.readline()
