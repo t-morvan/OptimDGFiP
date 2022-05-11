@@ -1,2 +1,9 @@
 https://static.data.gouv.fr/resources/quartiers-prioritaires-de-la-politique-de-la-ville-qpv/20180110-144945/qp-politiquedelaville-shp.zip
-
+https://www.data.gouv.fr/fr/datasets/r/0582ad65-eef1-47d8-aa32-92b88e46cfcb
+https://www.data.gouv.fr/fr/datasets/r/48b02bc7-211b-4bcc-b395-832be587e2d0
+https://www.data.gouv.fr/fr/datasets/r/7d6df627-a3e9-41cb-8914-573d46350e17
+https://www.insee.fr/fr/statistiques/fichier/4803954/AAV2020_au_01-01-2022.zip
+https://www.insee.fr/fr/statistiques/fichier/4799309/base-ic-evol-struct-pop-2017_csv.zip
+https://www.insee.fr/fr/statistiques/fichier/4515565/base-ccc-evol-struct-pop-2017.zip
+https://www.insee.fr/fr/statistiques/fichier/4291712/indic-struct-distrib-revenu-2017-COMMUNES.zip
+ftp://Contours_IRIS_ext:ao6Phu5ohJ4jaeji@ftp3.ign.fr/CONTOURS-IRIS_2-1__SHP__FRA_2017-01-01.7z
