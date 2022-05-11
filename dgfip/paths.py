@@ -8,3 +8,6 @@ RECENSEMENT = "base-ic-evol-struct-pop-2017_csv/base-ic-evol-struct-pop-2017.CSV
 QPV = "qp-politiquedelaville-shp/QP_METROPOLE_LB93.shp"
 STRUCTURES = "coordonnees-des-structures-dgfip.csv"
 REVENUS = "BASE_TD_FILO_DEC_IRIS_2017.xlsx"
+RECENSEMENT_COM = "base-ccc-evol-struct-pop-2017/base-cc-evol-struct-pop-2017.CSV"
+REVENUS_COM = "base-filosofi-2017_CSV/cc_filosofi_2017_COM.CSV"
+COM = "laposte_hexasmal.geojson"

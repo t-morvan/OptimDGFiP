@@ -10,7 +10,7 @@ def download_url(url: str) -> None:
         filename (str, optional): Name to save the file under. If None, use the basename of the URL
     """
 
-    root = os.getcwd() + "/data"
+    root = f'{os.getcwd()}/data"
     filename = os.path.basename(url)
     fpath = os.path.join(root, filename)
 
