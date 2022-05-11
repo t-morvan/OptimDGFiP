@@ -19,8 +19,15 @@ def download_url(url: str) -> None:
                        
      urlretrieve(url, fpath)
    
-
+def main() -> None:
+     with open('datalinks.txt', 'r', encoding='utf-8') as file:
+        for line in file:
+            link = file.readline()
+            download_url(link)
+     
+    
+    
 if __name__ == "__main__":
-    download_url(
-        "https://www.data.gouv.fr/fr/datasets/r/2b410993-9018-488c-8259-fe8cf9073a66"
-    )
+    main()
+   
+      
