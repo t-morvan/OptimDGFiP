@@ -16,7 +16,9 @@
     (cf https://github.com/python-poetry/poetry/issues/365)
 
 
-5. Créer un sous-dossier data et télécharger+unzip toutes les sources ci-dessous (TO DO à automatiser)
+5. lancer ```download.py```pour télécharger les fichiers
+6. les dézipper (TO DO automatiser le dézip)
+
 ## Données
 
 ### Données socio-économiques
