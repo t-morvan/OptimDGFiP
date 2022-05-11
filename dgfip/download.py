@@ -1,5 +1,6 @@
 import os
 from urllib.request import urlopen, urlretrieve  
+import zipfile
 
 def download_url(url: str) -> None:
     """Download a file from a url and place it in root.
@@ -20,13 +21,18 @@ def download_url(url: str) -> None:
      urlretrieve(url, fpath)
    
 def main() -> None:
+    # downlload all files
      with open('datalinks.txt', 'r', encoding='utf-8') as file:
         for line in file:
             link = file.readline()
             download_url(link)
      
-    
-    
+    # unzip them
+    for file in os.listdir('data'):
+        if file.endswith('.zip'):  
+            with zipfile.ZipFile(f'data/{file}, 'r') as zip_ref:
+                zip_ref.extractall('data')
+
 if __name__ == "__main__":
     main()
    
