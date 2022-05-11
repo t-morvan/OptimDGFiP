@@ -1,6 +1,5 @@
 import os
-import urllib.request
-
+from urllib.request import urlopen, urlretrieve  
 
 def download_url(url: str) -> None:
     """Download a file from a url and place it in root.
@@ -10,24 +9,16 @@ def download_url(url: str) -> None:
         filename (str, optional): Name to save the file under. If None, use the basename of the URL
     """
 
-    root = f'{os.getcwd()}/data"
-    filename = os.path.basename(url)
-    fpath = os.path.join(root, filename)
-
+    root = f'{os.getcwd()}/data'
     os.makedirs(root, exist_ok=True)
 
-    try:
-        print("Downloading " + url + " to " + fpath)
-        urllib.request.urlretrieve(url, fpath)
-    except (urllib.error.URLError, IOError) as e:
-        if url[:5] == "https":
-            url = url.replace("https:", "http:")
-            print(
-                "Failed download. Trying https -> http instead."
-                " Downloading " + url + " to " + fpath
-            )
-            urllib.request.urlretrieve(url, fpath)
-
+     print("Downloading " + url + " to " + fpath)
+     response = urlopen(url)
+     filename = response.info().get_filename()  
+     fpath = os.path.join(root, filename)
+                       
+     urlretrieve(url, fpath)
+   
 
 if __name__ == "__main__":
     download_url(
