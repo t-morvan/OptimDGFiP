@@ -8,7 +8,7 @@ import geopandas as gpd
 import routingpy
 from shapely.geometry import Polygon
 
-from dgfip.constants import VALHALLA_HOST
+from dgfip.paths import VALHALLA_HOST
 
 
 def get_isochrone(client : routingpy.routers.Valhalla ,location: Tuple[float, float], duration : int) -> gpd.GeoDataFrame:
@@ -22,9 +22,6 @@ def get_isochrone(client : routingpy.routers.Valhalla ,location: Tuple[float, fl
 
 
 
-
-
 def get_coverage(locations : List[Tuple[float, float]] , duration: int) -> float:
-    
     
 
