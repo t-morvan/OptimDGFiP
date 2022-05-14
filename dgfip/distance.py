@@ -2,14 +2,18 @@
 Distance aux centres DGFIP
 """
 
+from typing import List, Optional
+
 import geopandas as gpd
 import pandas as pd
 
-from dgfip.read import get_iris, get_dep
+from dgfip.read import get_dep, get_iris, add_distances
 
 
 def mean_distances(
-    categories: list[str] | None = None, save: bool = False
+    categories: Optional[List[str]] = None,
+    public: str | None = None,
+    filename: str | None = None,
 ) -> gpd.GeoDataFrame:
     """
     Calcul de la distance moyenne des IRIS d'un département aux services DGFIP les plus proches
@@ -19,6 +23,8 @@ def mean_distances(
         categories = ["P17_POP", "P17_POP80P"]
 
     iris = get_iris()
+    iris = add_distances(iris, public=public)
+
     dep = get_dep(crs="2154")
 
     # melt à améliorer
@@ -49,7 +55,7 @@ def mean_distances(
     # rajout des infos spatiales
     base = dep.merge(agg, left_on="code", right_on="DEP")
 
-    if save:
-        base.to_file("../data/departement_distances.geojson", driver="GeoJSON")
+    if filename is not None:
+        base.to_file(f"../data/{filename}", driver="GeoJSON")
 
     return base

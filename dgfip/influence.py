@@ -54,7 +54,7 @@ def create_influence(
 
     # ajout des informations IRIS
     zones["id"] = zones.index
-    iris = get_iris(compute_distance=False)
+    iris = get_iris()
     inter = zones.sjoin(iris)
     agg = inter.groupby("id").sum()
     sources = gpd.GeoDataFrame(agg, geometry=zones.geometry)

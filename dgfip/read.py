@@ -2,6 +2,8 @@
 Fonctions pour pré-traiter et lire les données
 """
 
+from typing import Optional
+
 import geopandas as gpd
 import pandas as pd
 from shapely.geometry import Point
@@ -9,7 +11,7 @@ from shapely.geometry import Point
 from dgfip import paths
 
 
-def get_structures(crs: str | None = None):
+def get_structures(crs: Optional[str] = None):
     """
     Retourne les structures DFGIP
 
@@ -35,7 +37,7 @@ def get_structures(crs: str | None = None):
     return geo_struct
 
 
-def get_qpv(compute_distance: bool = True) -> gpd.GeoDataFrame:
+def get_qpv(compute_distance: bool = False) -> gpd.GeoDataFrame:
     """
     Retourne la base de données des QPV
 
@@ -53,13 +55,13 @@ def get_qpv(compute_distance: bool = True) -> gpd.GeoDataFrame:
     return qpv
 
 
-def get_iris(compute_distance: bool | None = True) -> gpd.GeoDataFrame:
+def get_iris(compute_distance: Optional[bool] = False) -> gpd.GeoDataFrame:
     """
     Retourne les informations démographiques du recensement à l'IRIS
 
     Args:
         compute_distance: si vrai, ajoute les distances aux structures DGFIP
-    Returns: 
+    Returns:
         geodataframe des iris
     """
     iris = gpd.read_file(f"../data/{paths.IRIS}")
@@ -81,13 +83,13 @@ def get_iris(compute_distance: bool | None = True) -> gpd.GeoDataFrame:
     return iris_enrichi
 
 
-def get_com(compute_distance: bool | None = True) -> gpd.GeoDataFrame:
+def get_com(compute_distance: Optional[bool] = False) -> gpd.GeoDataFrame:
     """
     Retourne les communes enrichies des informations du recensement et de Filosofi
 
     Args:
         compute_distance: si vrai, ajoute les distances aux structures DGFIP
-    Returns: 
+    Returns:
         geodataframe des communes
     """
 
@@ -105,7 +107,7 @@ def get_com(compute_distance: bool | None = True) -> gpd.GeoDataFrame:
     base = com.merge(rec, left_on="code_commune_insee", right_on="CODGEO")
     base = base.merge(rev, on="CODGEO")
     base = base[base.CODGEO.str.slice(0, 2) != "97"]
-    
+
     if compute_distance:
         base = add_distances(base, inside=False)
 
@@ -115,7 +117,7 @@ def get_com(compute_distance: bool | None = True) -> gpd.GeoDataFrame:
 def extract_coord(coords: str) -> Point:
     """
     Parsing des coordonnées
-    
+
     Args:
         coords: coordonnées au format lon,lat
 
@@ -127,7 +129,7 @@ def extract_coord(coords: str) -> Point:
 
 
 def add_distances(
-    sources: gpd.GeoDataFrame, inside: None | bool = True
+    sources: gpd.GeoDataFrame, inside: None | bool = True, public: str | None = None
 ) -> gpd.GeoDataFrame:
     """
     Calcule la distance (km) à la structure DGFIP la plus proche, pour chaque source et type de service.
@@ -136,7 +138,7 @@ def add_distances(
     Args:
         sources: geodataframe des sources
         inside: si vrai, rajoute pour chaque source si elle contient une structure DGFIP
-    
+
     Returns:
         le geodataframe enrichi des distances
     """
@@ -146,6 +148,13 @@ def add_distances(
         sources = sources.to_crs("2154")
 
     structures = get_structures(crs="2154")
+    # selection du public si précisé
+    if public is not None:
+        if public not in {"particuliers", "professionnels"}:
+            raise ValueError(
+                "Public prend les valeurs 'particuliers' ou 'professionnels' "
+            )
+        structures = structures[structures["public"].str.contains(public, na=False)]
 
     # par type de service
     for name, service in structures.groupby("TYPE DE SERVICE"):
@@ -172,13 +181,13 @@ def add_distances(
     return sources
 
 
-def get_dep(crs: str | None = None) -> gpd.GeoDataFrame:
+def get_dep(crs: Optional[bool] = None) -> gpd.GeoDataFrame:
     """
     Retourne le contour des départements
 
     Args:
         crs: si fourni, convertion dans le référentiel donné
-    
+
     Returns:
         geodataframe des départements
     """
