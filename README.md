@@ -1,9 +1,9 @@
 # OptimisationFiscale
 
-## Installation (in progress)
+## Installation
 1. cloner le repo ``` git clone https://github.com/t-morvan/OptimisationFiscale.git ```
 2. installer poetry https://python-poetry.org/docs/
-3. faire ``` poetry install ```
+3. ```cd``` dans le repo et faire ``` poetry install ```
 
 4. optionnel (pour utiliser le backend vectorisé pygeos avec geopandas) : 
     ```
@@ -26,3 +26,14 @@ Nous avons principalement utilisé des données démographiques issues du recens
 L'ensemble des sources, url et licences utilisées sont rassemblées [ici](URLS.yaml).
 
 ## Outils
+
+### Calcul des distances et plus proches voisins
+
+### Calcul des zones d'influences
+
+### Statistiques descriptives (non spatiales)
+
+### Optimisation de l'implantation des centres
+
+### Isochrones
+
