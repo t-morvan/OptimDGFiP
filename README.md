@@ -18,7 +18,7 @@
 
 
 5. lancer ```download.py```pour télécharger les fichiers
-6. les dézipper (TO DO automatiser le dézip)
+6. décompresser le shapefile des IRIS (avec 7zip par exemple)
 
 ## Données
 
