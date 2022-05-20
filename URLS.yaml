@@ -7,7 +7,7 @@
   
 - structures DGFIP:
  - filename : coordonnees-des-structures-dgfip.csv
- - url : https://www.data.gouv.fr/fr/datasets/r/0582ad65-eef1-47d8-aa32-92b88e46cfcb
+ - url : https://data.economie.gouv.fr/explore/dataset/coordonnees-des-structures-dgfip/download/?format=csv&timezone=Europe/Berlin&lang=fr&use_labels_for_header=true&csv_separator=%3B
  - licence : Licence Ouverte / Open Licence version 2.0
 
 - filosofi (INSEE):
