@@ -2,6 +2,7 @@
 Fonctions pour pré-traiter et lire les données
 """
 
+from importlib import resources
 from typing import Optional
 
 import geopandas as gpd
@@ -21,7 +22,9 @@ def get_structures(crs: Optional[str] = None):
     Returns:
         geodataframe des structures
     """
-    structures = pd.read_csv(f"../data/{paths.STRUCTURES}", sep=";")
+
+    with resources.path("dgfip.data", paths.STRUCTURES) as file:
+        structures = pd.read_csv(file, sep=";")
 
     # ne garde que la France métropolitaine et les structures géocodées
     geo_struct = structures[
@@ -49,7 +52,9 @@ def get_qpv(compute_distance: bool = False) -> gpd.GeoDataFrame:
 
     """
 
-    qpv = gpd.read_file(f"../data/{paths.QPV}", crs="2154")
+    fs = resources.files("dgfip.data")
+    qpv = gpd.read_file(fs.joinpath(paths.QPV), crs="2154")
+
     if compute_distance:
         qpv = add_distances(qpv)
     return qpv
@@ -64,9 +69,11 @@ def get_iris(compute_distance: Optional[bool] = False) -> gpd.GeoDataFrame:
     Returns:
         geodataframe des iris
     """
-    iris = gpd.read_file(f"../data/{paths.IRIS}")
+
+    fs = resources.files("dgfip.data")
+    iris = gpd.read_file(fs.joinpath(paths.IRIS))
     rec = pd.read_csv(
-        f"../data/{paths.RECENSEMENT}",
+        fs.joinpath(paths.RECENSEMENT),
         sep=";",
         dtype={"IRIS": str, "COM": str, "LAB_IRIS": str},
     )
@@ -93,12 +100,13 @@ def get_com(compute_distance: Optional[bool] = False) -> gpd.GeoDataFrame:
         geodataframe des communes
     """
 
-    com = gpd.read_file(f"../data/{paths.COM}")
+    fs = resources.files("dgfip.data")
+    com = gpd.read_file(fs.joinpath(paths.COM))
     rec = pd.read_csv(
-        f"../data/{paths.RECENSEMENT_COM}", sep=";", dtype={"CODGEO": str}
+        fs.joinpath(paths.RECENSEMENT_COM), sep=";", dtype={"CODGEO": str}
     )
     rev = pd.read_csv(
-        f"../data/{paths.REVENUS_COM}",
+        fs.joinpath(paths.REVENUS_COM),
         sep=";",
         dtype={"CODGEO": str},
         usecols=["CODGEO", "MED17"],
@@ -192,7 +200,9 @@ def get_dep(crs: Optional[bool] = None) -> gpd.GeoDataFrame:
         geodataframe des départements
     """
 
-    dep = gpd.read_file(f"../data/{paths.DEP}", crs="4236")
+    with resources.path("dgfip.data", paths.DEP) as file:
+        dep = gpd.read_file(file, crs="4236")
+
     if crs is not None:
         dep = dep.to_crs(crs)
     return dep

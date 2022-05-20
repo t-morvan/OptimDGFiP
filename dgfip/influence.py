@@ -59,9 +59,10 @@ def create_influence(
     agg = inter.groupby("id").sum()
     sources = gpd.GeoDataFrame(agg, geometry=zones.geometry)
     sources["area"] = zones.area / 10**6
+    sources = sources.to_crs("4326")
 
     if save:
-        name = f"influence_{service.replace('' '','')}.geojson"
+        name = f"../data/influence_{service.replace(' ','')}.geojson"
         sources.to_file(name, driver="GeoJSON")
 
     return sources

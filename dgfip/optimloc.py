@@ -99,6 +99,7 @@ def relocate(
     structures["categorie"] = "initial"
     geo_list.append(structures[["categorie", "geometry"]])
     loc = gpd.GeoDataFrame(pd.concat(geo_list, ignore_index=True), crs="2154")
+    loc = loc.to_crs("4326")
 
     if save:
         loc.to_file("../data/reloc.geojson", driver="GeoJSON")

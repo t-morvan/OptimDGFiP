@@ -1,6 +1,6 @@
 import os
 import zipfile
-from urllib.request import urlopen, urlretrieve
+from urllib.request import urlretrieve
 
 import yaml
 
@@ -27,8 +27,9 @@ def main() -> None:
         links = yaml.safe_load(file)
 
     # download files and unzip them
-    for name, link in links.items():
-        download(link, name)
+    for link in links.values():
+        name = link["name"]
+        download(link["url"], name)
         if name.endswith(".zip"):
             with zipfile.ZipFile(f"data/{name}", "r") as zip_ref:
                 zip_ref.extractall(f"data/{name.replace('.zip','')}")

@@ -7,7 +7,7 @@ from typing import List, Optional
 import geopandas as gpd
 import pandas as pd
 
-from dgfip.read import get_dep, get_iris, add_distances
+from dgfip.read import get_iris, add_distances
 
 
 def mean_distances(
@@ -24,8 +24,6 @@ def mean_distances(
 
     iris = get_iris()
     iris = add_distances(iris, public=public)
-
-    dep = get_dep(crs="2154")
 
     # melt à améliorer
     long_iris = pd.melt(
@@ -52,10 +50,7 @@ def mean_distances(
     agg["distance_avg"] = agg["prod"] / agg["pop"]
     agg = agg[["DEP", "distance_avg", "service", "pop_cat"]]
 
-    # rajout des infos spatiales
-    base = dep.merge(agg, left_on="code", right_on="DEP")
-
     if filename is not None:
-        base.to_file(f"../data/{filename}", driver="GeoJSON")
+        agg.to_csv(f"../data/{filename}")
 
-    return base
+    return agg
