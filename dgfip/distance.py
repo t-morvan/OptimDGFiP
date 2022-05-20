@@ -51,6 +51,6 @@ def mean_distances(
     agg = agg[["DEP", "distance_avg", "service", "pop_cat"]]
 
     if filename is not None:
-        agg.to_csv(f"../data/{filename}")
+        agg.to_csv(f"data/{filename}")
 
     return agg

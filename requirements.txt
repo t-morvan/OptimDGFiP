@@ -25,11 +25,13 @@ numpy==1.22.3
 packaging==21.3; python_version >= "3.7"
 pandas==1.4.2; python_version >= "3.8"
 pillow==9.1.0; python_version >= "3.7"
+pyaml==21.10.1
 pygeos==0.12.0; python_version >= "3.6"
 pyparsing==3.0.8; python_full_version >= "3.6.8" and python_version >= "3.7"
 pyproj==3.3.1; python_version >= "3.8"
 python-dateutil==2.8.2; python_version >= "3.8" and python_full_version < "3.0.0" or python_full_version >= "3.3.0" and python_version >= "3.8"
 pytz==2022.1; python_version >= "3.8"
+pyyaml==6.0; python_version >= "3.6"
 requests==2.27.1; python_full_version >= "3.7.0" and python_version >= "3.7"
 routingpy==0.4.0; python_full_version >= "3.7.0"
 rtree==1.0.0; python_version >= "3.7"

@@ -102,6 +102,6 @@ def relocate(
     loc = loc.to_crs("4326")
 
     if save:
-        loc.to_file("../data/reloc.geojson", driver="GeoJSON")
+        loc.to_file("data/reloc.geojson", driver="GeoJSON")
 
     return loc

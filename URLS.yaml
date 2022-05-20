@@ -1,41 +1,41 @@
 # liste des sources
 
 - quartiers politique de la ville:
-  - filename : qp-politiquedelaville-shp.zip 
-  - url : https://static.data.gouv.fr/resources/quartiers-prioritaires-de-la-politique-de-la-ville-qpv/20180110-144945/qp-politiquedelaville-shp.zip
-  - licence : Licence Ouverte / Open Licence
+  filename: qp-politiquedelaville-shp.zip 
+  url: https://static.data.gouv.fr/resources/quartiers-prioritaires-de-la-politique-de-la-ville-qpv/20180110-144945/qp-politiquedelaville-shp.zip
+  licence: Licence Ouverte / Open Licence
   
 - structures DGFIP:
- - filename : coordonnees-des-structures-dgfip.csv
- - url : https://data.economie.gouv.fr/explore/dataset/coordonnees-des-structures-dgfip/download/?format=csv&timezone=Europe/Berlin&lang=fr&use_labels_for_header=true&csv_separator=%3B
- - licence : Licence Ouverte / Open Licence version 2.0
+  filename: coordonnees-des-structures-dgfip.csv
+  url: https://data.economie.gouv.fr/explore/dataset/coordonnees-des-structures-dgfip/download/?format=csv&timezone=Europe/Berlin&lang=fr&use_labels_for_header=true&csv_separator=%3B
+  licence: Licence Ouverte / Open Licence version 2.0
 
 - filosofi (INSEE):
-  - filename: base-filosofi-2017_CSV.zip
-  - url : https://www.insee.fr/fr/statistiques/fichier/4507225/base-filosofi-2017_CSV.zip
-  - licence : non
+  filename: base-filosofi-2017_CSV.zip
+  url: https://www.insee.fr/fr/statistiques/fichier/4507225/base-filosofi-2017_CSV.zip
+  licence: non
 
 - base des codes postaux (La Poste):
-  - filaneme: laposte_hexasmal.geojson
-  - url: https://www.data.gouv.fr/fr/datasets/r/7d6df627-a3e9-41cb-8914-573d46350e17
-  - licence: Open License v2.0
+  filename: laposte_hexasmal.geojson
+  url: https://www.data.gouv.fr/fr/datasets/r/7d6df627-a3e9-41cb-8914-573d46350e17
+  licence: Open License v2.0
   
 - recensement 2017 (IRIS):
-  - filename: base-ic-evol-struct-pop-2017_csv.zip
-  - url: https://www.insee.fr/fr/statistiques/fichier/4799309/base-ic-evol-struct-pop-2017_csv.zip
-  - licence: non
+  filename: base-ic-evol-struct-pop-2017_csv.zip
+  url: https://www.insee.fr/fr/statistiques/fichier/4799309/base-ic-evol-struct-pop-2017_csv.zip
+  licence: non
  
 - recensement 2017 (Communes):
-  - filename: base-ccc-evol-struct-pop-2017.zip 
-  - url: https://www.insee.fr/fr/statistiques/fichier/4515565/base-ccc-evol-struct-pop-2017.zip
-  -licence: non
+  filename: base-ccc-evol-struct-pop-2017.zip 
+  url: https://www.insee.fr/fr/statistiques/fichier/4515565/base-ccc-evol-struct-pop-2017.zip
+  licence: non
 
 - geographie des departements:
-  - filename: departements-version-simplifiee.geojson 
-  - url: https://github.com/gregoiredavid/france-geojson/raw/master/departements-version-simplifiee.geojson
-  - licence: Licence Ouverte
+  filename: departements-version-simplifiee.geojson 
+  url: https://github.com/gregoiredavid/france-geojson/raw/master/departements-version-simplifiee.geojson
+  licence: Licence Ouverte
 
 - contour des IRIS (IGN):
-- filename: CONTOURS-IRIS_2-1__SHP__FRA_2019-01-01.7z001 
-- url: ftp://Contours_IRIS_ext:ao6Phu5ohJ4jaeji@ftp3.ign.fr/CONTOURS-IRIS_2-1__SHP__FRA_2017-01-01.7z
-- licence: Licence Ouverte
+  filename: CONTOURS-IRIS_2-1__SHP__FRA_2019-01-01.7z001 
+  url: ftp://Contours_IRIS_ext:ao6Phu5ohJ4jaeji@ftp3.ign.fr/CONTOURS-IRIS_2-1__SHP__FRA_2017-01-01.7z
+  licence: Licence Ouverte

@@ -62,7 +62,7 @@ def create_influence(
     sources = sources.to_crs("4326")
 
     if save:
-        name = f"../data/influence_{service.replace(' ','')}.geojson"
+        name = f"data/influence_{service.replace(' ','')}.geojson"
         sources.to_file(name, driver="GeoJSON")
 
     return sources

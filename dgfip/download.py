@@ -23,12 +23,12 @@ def main() -> None:
     if not os.path.isdir("data"):
         os.mkdir("data")
 
-    with open("LINKS.yaml", "r", encoding="utf-8") as file:
+    with open("../URLS.yaml", "r", encoding="utf-8") as file:
         links = yaml.safe_load(file)
 
     # download files and unzip them
-    for link in links.values():
-        name = link["name"]
+    for link in links:
+        name = link["filename"]
         download(link["url"], name)
         if name.endswith(".zip"):
             with zipfile.ZipFile(f"data/{name}", "r") as zip_ref:

@@ -2,7 +2,7 @@
 name = "dgfip"
 version = "0.1.0"
 description = "Code du Hackathon DFGIP 2022"
-authors = ["Titouan Morvan <you@example.com>"]
+authors = ["Clara Carlier <clara.carlier@ensae.fr>; Pierre Monteiller <pierre.monteiller@mines-paristech.fr>; Titouan Morvan <titouan.morvan@ens-lyon.fr>"]
 
 [tool.poetry.dependencies]
 python = ">=3.8,<3.11"
