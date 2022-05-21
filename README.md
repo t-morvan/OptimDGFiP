@@ -7,11 +7,11 @@ A la première lecture de cette question, on peut se demander si l'implantation 
 Toutefois, l'idée selon laquelle *toutes les démarches* peuvent s'effectuer en ligne et *par tous* est à nuancer.
 Le dernier [Insee focus](https://www.insee.fr/fr/statistiques/6438420) montre clairement qu'il existe une fracture numérique avec "un tiers des adultes [qui] ont renoncé à effectuer une démarche administrative en ligne en 2021". Concernant la DGFiP, même si le nombre de télé-déclarations des impôts a plus que doublé en dix ans, elles ne représentent que 61% des décarations selon cette même enquête.
 
-De plus, on peut supposer que les demandes en ligne des habitants d'un département sont traitées par des agents des structures DGFIP du département en question.
+De plus, on peut supposer que les demandes en ligne des habitants d'un département sont traitées par des agents des structures DGFiP du département en question.
 
-La couverture du territoire par les structures DFIP est donc encore une problématique d'intérêt public que nous allons explorer dans ce projet. Nous nous sommes posés plusieurs questions auxquelles nous avons tenté d'apporter un éclairage quantitatif.
+La couverture du territoire par les structures DFiP est donc encore une problématique d'intérêt public que nous allons explorer dans ce projet. Nous nous sommes posés plusieurs questions auxquelles nous avons tenté d'apporter un éclairage quantitatif.
 
-- Tous les départements sont-ils également en pourvus en structures DGFIP ? En nombre absolu et par habitant ? En termes de distance moyenne aux centres ?
+- Tous les départements sont-ils également en pourvus en structures DGFiP ? En nombre absolu et par habitant ? En termes de distance moyenne aux centres ?
 
 - Les quartiers politique de la ville (QPV) sont-ils bien pourvus en structures DGFiP ?
 
