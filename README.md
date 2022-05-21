@@ -71,7 +71,7 @@ Toutes les manipulations non spatiales ont été réalisées avec [```pandas```]
 Nous avons utilisé le pendant spatial de pandas, [```geopandas```](https://geopandas.org/en/stable/), pour les manipulations spatiales. La volumétrie étant assez importante (>40 000 "quartiers" IRIS), nous avons eu recours à [```pygeos```](https://pygeos.readthedocs.io/en/stable/) pour vectoriser les opérations de géometrie. Nous avons pris le soin de convertir les données en projection [Lambert 93 ](https://fr.wikipedia.org/wiki/Projection_conique_conforme_de_Lambert) afin d'assurer la précision des calculs de distances et d'aires. 
 
 La distance moyenne aux structures DGFIP de type S au sein d'un département a été estimée par :
-$$ \overline{D}(dep, S)  = \frac{1}{\sum_{i \in \text{Iris}(dep)} \text{pop}_i}  \sum_{i \in \text{Iris}(dep)} \text{pop}_i  \times d(i, S) $$
+$$ \overline{D}(dep, S)  = \frac{1}{\sum_\limits{i \in IRIS(dep)} pop_i}  \sum_{i \in IRIS(dep)} pop_i  \times d(i, S)$$
 
 où $d(i,S)$ est la distance de l'Iris i à la structure de type S la plus proche et $\text{pop}_i$ sa population 
 
@@ -83,7 +83,7 @@ La partition en cellules de Voronoi a été réalisée à l'aide la librairie de
 #### Optimisation de l'implantation des centres :round_pushpin:
 Pour optimiser la localisation des centres, nous avons choisi de minimiser le critère suivant :
 
-$$ L(C) = \sum_{i \in Iris} w_i d_2(i, C)^2$$
+$$ L(C) = \sum_{i \in IRIS} w_i d_2(i, C)^2$$
 
 où $C=\{c_1,...,c_k\} \in \mathbb{R}^{2 \times k}$ est la localisation des centres, $d_2(i,C)$ est la distance euclidienne de l'Iris au point de C le plus proche et $w_i$ un poids à choisir; par exemple la population de l'IRIS, la population des retraités de l'IRIS ou une combinaison convexe de ces populations. 
 
