@@ -1,11 +1,35 @@
 # Hackathon Open Data de la DGFiP
 
-> La couverture du territoire par les structures DGFiP est-elle optimale et assure-t-elle un égal accès de tous au service public ?
+> La couverture du territoire par les structures DGFIP est-elle optimale et assure-t-elle un égal accès de tous au service public ?
 
-Quel 
-[Insee focus](https://www.insee.fr/fr/statistiques/6438420)
+On peut se demander si l'implantation géographique des structures DGFIP importe encore à l'heure où l'accès au service public est de plus en plus en dématérialisé. 
+
+Tout d'abord, l'idée selon laquelle *toutes les démarches* peuvent s'effectuer en ligne et *par tous* est à nuancer.
+Le dernier [Insee focus](https://www.insee.fr/fr/statistiques/6438420) montre clairement qu'il existe une fracture numérique avec "un tiers des adultes [qui] ont renoncé à effectuer une démarche administrative en ligne en 2021". Concernant la DGFIP, même si le nombre de télé-déclarations des impôts a plus que doublé en dix ans, elles ne représentent que 61% des décarations selon cette même enquête.
+
+De plus, on peut supposer que les demandes en ligne des habitants d'un département sont traitées par des agents des structures DGFIP du département en question.
+
+La couverture du territoire par les structures DFIP est donc encore une probématique d'intérêt public que nous allons explorer dans ce projet. Nous nous sommes posés plusieurs questions auxquelles nous avons tenté d'apporter un éclairage quantitatif.
+
+- Tous les départements sont-ils également en pourvus en structures DGFIP ? En nombre absolu et par habitant ? En termes de distance moyenne aux centres ?
+
+- Les quartiers politique de la ville (QPV) sont-ils bien pourvus en structures DGFIP ?
+
+- Quelle est le pourcentage d'un département situé à moins de 15 minutes en voitures d'un centre de Finances publiques ?
+
+- Peut-on définir une zone d'influence d'une structure DGFIP et existe-t-il des disparités en termes de taille et caractétistiques socio-démographiques ?
+
+- Comment re-localiser les centres de sorte à minimiser la distance aux utilisateurs ?
+
 
 ## Livrables
+
+1. Un Dashboard Tableau présente la plupart des résulats obtenus[lien].
+2. Des notebooks encore exploratoires sont disponibles dans [notebooks](notebooks/), notamment :
+    - ```revenus.ipynb``` : les inégalités d'accès selon le revenu médian d'une commune.
+    - ```professionnels.ipynb``` : distances des artisans, commerçants et chefs d'entreprise aux structures proposant un service pour professionnels.
+3. Des fonctions pour lire, croiser et calculer des distances entre les IRIS/Communes et les structures DGFIP (cf documentation technique).
+4. Un script [```optimloc.py```](dgfip/optimloc.py) pour calculer une re-localisation des structures DGFIP d'une zone avec un poids configurable pour chaque IRIS (population, population de 80 ans et + par exemple).
 
 
 ## Documentation technique
@@ -37,7 +61,8 @@ Toutes les fonctions possèdent une docstring et sont typées; une documentation
 Nous avons principalement utilisé des données démographiques issues du recensement de l'Insee ainsi que la base des quartiers politique de la ville.
 L'ensemble des sources, url et licences utilisées sont rassemblées [ici](URLS.yaml).
 
-### Outils
+
+### Outils et méthodes
 
 #### Statistiques descriptives (non spatiales) :bar_chart:
 Toutes les manipulations non spatiales ont été réalisées avec [```pandas```](https://pandas.pydata.org/).
@@ -45,11 +70,24 @@ Toutes les manipulations non spatiales ont été réalisées avec [```pandas```]
 #### Calcul des distances et plus proches voisins 🗺️
 Nous avons utilisé le pendant spatial de pandas, [```geopandas```](https://geopandas.org/en/stable/), pour les manipulations spatiales. La volumétrie étant assez importante (>40 000 "quartiers" IRIS), nous avons eu recours à [```pygeos```](https://pygeos.readthedocs.io/en/stable/) pour vectoriser les opérations de géometrie. Nous avons pris le soin de convertir les données en projection [Lambert 93 ](https://fr.wikipedia.org/wiki/Projection_conique_conforme_de_Lambert) afin d'assurer la précision des calculs de distances et d'aires. 
 
+La distance moyenne aux structures DGFIP de type S au sein d'un département a été estimée par :
+$$ \overline{D}(dep, S)  = \frac{1}{\sum_{i \in \text{Iris}(dep)} \text{pop}_i}  \sum_{i \in \text{Iris}(dep)} \text{pop}_i  \times d(i, S) $$
+
+où $d(i,S)$ est la distance de l'Iris i à la structure de type S la plus proche et $\text{pop}_i$ sa population 
+
+(remarque: parfois la population est non exacte pour des soucis de secret mais c'est une première approximation).
+
 #### Calcul des zones d'influences :high_brightness:
 La partition en cellules de Voronoi a été réalisée à l'aide la librairie de statistiques spatiales [```libpysal```](https://pysal.org/libpysal/). Les données démographiques disponibles à l'IRIS ont ensuite été agrégées pour obtenir un indicateur par cellule.
 
 #### Optimisation de l'implantation des centres :round_pushpin:
-L'optimisation de localisation des centres revenant à effectuer des kmeans pondérés, nous avons utilisé [```sklearn```](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html).
+Pour optimiser la localisation des centres, nous avons choisi de minimiser le critère suivant :
+
+$$ L(C) = \sum_{i \in Iris} w_i d_2(i, C)^2$$
+
+où $C=\{c_1,...,c_k\} \in \mathbb{R}^{2 \times k}$ est la localisation des centres, $d_2(i,C)$ est la distance euclidienne de l'Iris au point de C le plus proche et $w_i$ un poids à choisir; par exemple la population de l'IRIS, la population des retraités de l'IRIS ou une combinaison convexe de ces populations. 
+
+Cela revient exactement à effectuer des kmeans pondérés et nous avons donc utilisé [```sklearn```](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html).
 
 #### Isochrones :blue_car:
 Un calcul du temps de trajet aux structures DGFIP a été expérimenté avec le moteur open-source [Valhalla](https://github.com/valhalla/valhalla) et la lirbrairie [```routingpy```](https://routingpy.readthedocs.io/en/latest/). Nous avons utilisé l'[image Docker](https://github.com/gis-ops/docker-valhalla) mise à disposition par gis-op.
