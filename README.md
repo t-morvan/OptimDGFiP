@@ -85,7 +85,7 @@ Pour optimiser la localisation des centres, nous avons choisi de minimiser le cr
 
 $$ L(C) = \sum_{i \in IRIS} w_i d_2(i, C)^2$$
 
-où $C=(c_1,...,c_k\) \in \mathbb{R}^{2 \times k}$ est la localisation des centres, $d_2(i,C)$ est la distance euclidienne de l'Iris au point de C le plus proche et $w_i$ un poids à choisir; par exemple la population de l'IRIS, la population des retraités de l'IRIS ou une combinaison de ces populations. 
+où $C=(c_1,...,c_k\) \in \mathbb{R}^{2 \times k}$ est la localisation des centres, $d_2(i,C)$ est la distance euclidienne de l'IRIS au point de C le plus proche et $w_i$ un poids à choisir; par exemple la population de l'IRIS, la population des retraités de l'IRIS ou une combinaison de ces populations. 
 
 Cela revient exactement à effectuer des kmeans pondérés et nous avons donc utilisé [```sklearn```](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html).
 
