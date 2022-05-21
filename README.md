@@ -9,13 +9,13 @@ Le dernier [Insee focus](https://www.insee.fr/fr/statistiques/6438420) montre cl
 
 De plus, on peut supposer que les demandes en ligne des habitants d'un département sont traitées par des agents des structures DGFIP du département en question.
 
-La couverture du territoire par les structures DFIP est donc encore une probématique d'intérêt public que nous allons explorer dans ce projet. Nous nous sommes posés plusieurs questions auxquelles nous avons tenté d'apporter un éclairage quantitatif.
+La couverture du territoire par les structures DFIP est donc encore une problématique d'intérêt public que nous allons explorer dans ce projet. Nous nous sommes posés plusieurs questions auxquelles nous avons tenté d'apporter un éclairage quantitatif.
 
 - Tous les départements sont-ils également en pourvus en structures DGFIP ? En nombre absolu et par habitant ? En termes de distance moyenne aux centres ?
 
 - Les quartiers politique de la ville (QPV) sont-ils bien pourvus en structures DGFiP ?
 
-- Quelle est le pourcentage d'un département situé à moins de 15 minutes en voitures d'un centre de Finances publiques ?
+- Quelle est le pourcentage d'un département situé à moins de 15 minutes en voiture d'un centre de Finances publiques ?
 
 - Peut-on définir une zone d'influence d'une structure DGFiP et existe-t-il des disparités en termes de taille et caractéristiques socio-démographiques ?
 
@@ -58,8 +58,8 @@ La couverture du territoire par les structures DFIP est donc encore une probéma
 Toutes les fonctions possèdent une docstring et sont typées; une documentation automatique générée par [pdoc](https://pdoc3.github.io/pdoc/) est disponible dans ```doc/```
 ### Données
 
-Nous avons principalement utilisé des données démographiques issues du recensement de l'Insee ainsi que la base des quartiers politique de la ville.
-L'ensemble des sources, url et licences utilisées sont rassemblées [ici](URLS.yaml).
+Nous avons principalement utilisé des données démographiques issues du recensement de l'Insee, les données du dispositif Filosofi ainsi que la base des quartiers politique de la ville.
+L'ensemble des sources, url et licences utilisées est rassemblé [ici](URLS.yaml).
 
 
 ### Outils et méthodes
@@ -73,9 +73,9 @@ Nous avons utilisé le pendant spatial de pandas, [```geopandas```](https://geop
 La distance moyenne aux structures DGFiP de type S au sein d'un département a été estimée par :
 $$ \overline{D}(dep, S)  = \frac{1}{\sum_\limits{i \in IRIS(dep)} pop_i}  \sum_{i \in IRIS(dep)} pop_i  \times d(i, S)$$
 
-où $d(i,S)$ est la distance de l'Iris i à la structure de type S la plus proche et $\text{pop}_i$ sa population 
+où $d(i,S)$ est la distance de l'IRIS i à la structure de type S la plus proche et $\text{pop}_i$ sa population 
 
-(remarque: parfois la population est non exacte pour des soucis de secret mais c'est une première approximation).
+(remarque: parfois la population est non exacte pour des soucis de secret statistique mais c'est une première approximation).
 
 #### Calcul des zones d'influences :high_brightness:
 La partition en cellules de Voronoi a été réalisée à l'aide la librairie de statistiques spatiales [```libpysal```](https://pysal.org/libpysal/). Les données démographiques disponibles à l'IRIS ont ensuite été agrégées pour obtenir un indicateur par cellule.
@@ -85,7 +85,7 @@ Pour optimiser la localisation des centres, nous avons choisi de minimiser le cr
 
 $$ L(C) = \sum_{i \in IRIS} w_i d_2(i, C)^2$$
 
-où $C=\{c_1,...,c_k\} \in \mathbb{R}^{2 \times k}$ est la localisation des centres, $d_2(i,C)$ est la distance euclidienne de l'Iris au point de C le plus proche et $w_i$ un poids à choisir; par exemple la population de l'IRIS, la population des retraités de l'IRIS ou une combinaison de ces populations. 
+où $C=(c_1,...,c_k\) \in \mathbb{R}^{2 \times k}$ est la localisation des centres, $d_2(i,C)$ est la distance euclidienne de l'Iris au point de C le plus proche et $w_i$ un poids à choisir; par exemple la population de l'IRIS, la population des retraités de l'IRIS ou une combinaison de ces populations. 
 
 Cela revient exactement à effectuer des kmeans pondérés et nous avons donc utilisé [```sklearn```](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html).
 
