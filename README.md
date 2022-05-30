@@ -1,8 +1,20 @@
 # Hackathon Open Data de la DGFiP
 
+1. [Introduction](https://github.com/t-morvan/OptimDGFiP#introduction)
+2. [Livrables](https://github.com/t-morvan/OptimDGFiP#livrables)
+3. [Documentation technique](https://github.com/t-morvan/OptimDGFiP#documentation-technique)
+    - [Installation](https://github.com/t-morvan/OptimDGFiP#installation)
+    - [Documentation des fonctions](https://github.com/t-morvan/OptimDGFiP#documentation-des-fonctions)
+    - [Données](https://github.com/t-morvan/OptimDGFiP#donn%C3%A9es)
+    - [Outils](https://github.com/t-morvan/OptimDGFiP#outils-et-m%C3%A9thodes)
+ 
+
+
+
+## Introduction
 > La couverture du territoire par les structures DGFiP est-elle optimale et assure-t-elle un égal accès de tous au service public ?
 
-A la première lecture de cette question, on peut se demander si l'implantation géographique des structures DGFiP importe encore à l'heure où l'accès au service public est de plus en plus en dématérialisé. 
+D'aucuns pourrait se demander si l'implantation géographique des structures DGFiP importe encore à l'heure où l'accès au service public est de plus en plus en dématérialisé. 
 
 Toutefois, l'idée selon laquelle *toutes les démarches* peuvent s'effectuer en ligne et *par tous* est à nuancer.
 Le dernier [Insee focus](https://www.insee.fr/fr/statistiques/6438420) montre clairement qu'il existe une fracture numérique avec "un tiers des adultes [qui] ont renoncé à effectuer une démarche administrative en ligne en 2021". Concernant la DGFiP, même si le nombre de télé-déclarations des impôts a plus que doublé en dix ans, elles ne représentent que 61% des décarations selon cette même enquête.
@@ -24,7 +36,7 @@ La couverture du territoire par les structures DFiP est donc encore une problém
 
 ## Livrables
 
-1. Un Dashboard Tableau présente la plupart des résulats obtenus[lien].
+1. Un [Dashboard](https://public.tableau.com/app/profile/titouan1484/viz/OpenDataDGFIP2022_/Histoire1) Tableau présente la plupart des résulats obtenus.
 2. Des notebooks encore exploratoires sont disponibles dans [notebooks](notebooks/), notamment :
     - ```revenus.ipynb``` : les inégalités d'accès selon le revenu médian d'une commune.
     - ```professionnels.ipynb``` : distances des artisans, commerçants et chefs d'entreprise aux structures proposant un service pour professionnels.
@@ -35,8 +47,8 @@ La couverture du territoire par les structures DFiP est donc encore une problém
 ## Documentation technique
 
 ### Installation  :wrench:
-1. cloner le repo ``` git clone https://github.com/t-morvan/OptimisationFiscale.git ```
-2. installer poetry https://python-poetry.org/docs/
+1. cloner le repo ``` git clone https://github.com/t-morvan/OptimDGFiP.git```
+2. installer si nécessaire poetry https://python-poetry.org/docs/
 3. ```cd``` dans le repo et faire ``` poetry install ```
 
 4. optionnel (pour utiliser le backend vectorisé pygeos avec geopandas) : 
@@ -85,7 +97,7 @@ Pour optimiser la localisation des centres, nous avons choisi de minimiser le cr
 
 $$ L(C) = \sum_{i \in IRIS} w_i d_2(i, C)^2$$
 
-où $C=(c_1,...,c_k) \in \mathbb{R}^{2 \times k}$ est la localisation des centres, $d_2(i,C)$ est la distance euclidienne de l'Iris au point de C le plus proche et $w_i$ un poids à choisir; par exemple la population de l'IRIS, la population des retraités de l'IRIS ou une combinaison de ces populations. 
+où $C=(c_1,...,c_k) \in \mathbb{R}^{2 \times k}$ est la localisation des centres, $d_2(i,C)$ est la distance euclidienne de l'IRIS au point de C le plus proche et $w_i$ un poids à choisir; par exemple la population de l'IRIS, la population des retraités de l'IRIS ou une combinaison de ces populations. 
 
 Cela revient exactement à effectuer des kmeans pondérés et nous avons donc utilisé [```sklearn```](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html).
 

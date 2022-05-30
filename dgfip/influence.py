@@ -1,3 +1,7 @@
+"""
+Calcul des zones d'influence des Centres de Finances publique
+"""
+
 import geopandas as gpd
 import numpy as np
 from libpysal.cg.voronoi import voronoi_frames
@@ -42,7 +46,7 @@ def create_influence(
         service: sélection du type de service
         save: si vrai, sauvegarde le fichier au format geojson
 
-    returns:
+    Returns:
         base des zones d'influences enrichies des informations démographiques
     """
     # creation des zones

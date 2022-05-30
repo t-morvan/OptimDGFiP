@@ -74,11 +74,22 @@ def preprocess(service: str, categories: List[str], deps):
 
 def relocate(
     service: str = "Centre de Finances publiques",
-    save: bool = False,
     categories: List[str] | None = None,
     deps: Set[str] | None = None,
+    save: bool = False,
 ):
+    """
+    Calcul des localisations optimales
 
+    Args:
+        service: type de service à re-localiser
+        categories : liste des catégories (du recensement Insee) pour lesquelles effectuer le calcul
+        deps: liste des départements
+        save: si vrai, sauvegarde les résultats (en crs 4326)
+
+    Returns:
+        localisations optimales des structures pour chaque catégorie
+    """
     # par chauvinisme
     if deps is None:
         deps = {"22", "29", "35", "56"}

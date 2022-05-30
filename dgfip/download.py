@@ -1,3 +1,7 @@
+""""
+Download data
+"""
+
 import os
 import zipfile
 from urllib.request import urlretrieve
@@ -18,7 +22,10 @@ def download(url: str, name: str) -> None:
     urlretrieve(url, f"data/{name}")
 
 
-def main() -> None:
+def get_data() -> None:
+    """
+    Télécharge tous les fichiers nécessaires à l'étude
+    """
 
     if not os.path.isdir("data"):
         os.mkdir("data")
@@ -36,4 +43,4 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    get_data()

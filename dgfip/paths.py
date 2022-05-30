@@ -12,3 +12,4 @@ RECENSEMENT_COM = "base-ccc-evol-struct-pop-2017/base-cc-evol-struct-pop-2017.CS
 REVENUS_COM = "base-filosofi-2017_CSV/cc_filosofi_2017_COM.CSV"
 COM = "laposte_hexasmal.geojson"
 DEP = "departements-version-simplifiee.geojson"
+POP_DEP = "ensemble/Departements.csv"
